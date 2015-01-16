@@ -26,7 +26,7 @@ echo $this->element('AddressModule.simple_address_review', array('alias' => 'Bil
 ```
 
 ### Dynamic Review Elements ###
-***Requires the javascript for full functionality***
+***Requires the javascript file for full functionality***
 
 **Dynamic Review Elements** combine the previous two element types. Assuming javascript is enabled, the view will display the formatted text of the address with an edit button. Clicking the button will hide this entire section and display and instead display the fieldset with populated inputs followed by a **Submit** and **Cancel** button. **Cancel** will revert the display. **Submit** will call the AddressModule to save the data and will display a flash message reporting the result and replacing the section with new data on success.
 
@@ -55,5 +55,5 @@ CREATE TABLE `addresses` (
   `foreign_table` varchar(100) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=114 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 ```
