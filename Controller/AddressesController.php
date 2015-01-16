@@ -92,4 +92,25 @@ class AddressesController extends AddressModuleAppController {
 		$this->Session->setFlash(__('Address was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	/**
+	 * 
+	 * @throws NotFoundException
+	 */
+	public function dynamic_review_edit() {
+		$alias = array_keys($this->request->data)[0];
+
+		if (!$this->Address->exists($this->request->data[$alias])) {
+			throw new NotFoundException(__('Invalid address'));
+		}
+		if ($this->Address->save($this->request->data[$alias])) {
+			$this->Session->setFlash(__('The address has been saved'));
+			$result = 'success';
+		} else {
+			$this->Session->setFlash(__('The address could not be saved. Please, try again.'));
+			$result = 'failure';
+		}
+		$this->set(compact('result', 'alias'));
+		$this->layout = 'ajax';
+	}
 }

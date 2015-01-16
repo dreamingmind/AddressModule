@@ -10,15 +10,21 @@ $(document).ready(function(){
 // ===================================================
 function initDynamicReview() {
 	var sections = $('section[id*="dynamic_review"]');
-	sections.each(function() {
-		$(this).find('div.fieldset').addClass('hide');
-		$(this).find('button.edit').on('click', dynamicReviewEditClick);
-		$(this).find('button.cancel').on('click', dynamicReviewCancelClick);
-		$(this).find('button.submit').on('click', dynamicReviewSubmitClick);
-	})
+	initSection(sections);
+//	sections.find('div.fieldset').addClass('hide');
+//	sections.find('button.edit').on('click', dynamicReviewEditClick);
+//	sections.find('button.cancel').on('click', dynamicReviewCancelClick);
+//	sections.find('button.submit').on('click', dynamicReviewSubmitClick);
 }
 
-function dynamicReviewToggleClick(e) {
+function initSection(sections) {
+	$(sections).find('div.fieldset').addClass('hide');
+	$(sections).find('button.edit').on('click', dynamicReviewEditClick);
+	$(sections).find('button.cancel').on('click', dynamicReviewCancelClick);
+	$(sections).find('button.submit').on('click', dynamicReviewSubmitClick);
+}
+
+function dynamicReviewEditClick(e) {
 	var parent = $(e.currentTarget).parent().addClass('hide');
 	parent.siblings('div.fieldset').removeClass('hide')
 }
@@ -29,9 +35,28 @@ function dynamicReviewCancelClick(e) {
 }
 
 function dynamicReviewSubmitClick(e) {
-	e.currentTarget.preventDefault();
-	var address_edits = $(e.currentTarget).siblings('fieldset');
-	
+	e.preventDefault();
+	var section_id = $(e.currentTarget).parents('section').attr('id');
+	var address_edits = $(e.currentTarget).siblings('fieldset').serialize();
+	$.ajax({
+		type: "POST",
+		dataType: "JSON",
+		data: address_edits,
+		url: webroot + 'address_module/addresses/dynamic_review_edit',
+		success: function (data) {
+			if (data.result == 'success') {
+				$('#' + section_id).replaceWith(data.section);
+				initSection($('#' + section_id));
+				$('#' + section_id).find('div.review').before(data.flash);
+			} else {
+				// result == 'failure'
+				$(e.currentTarget).parent().prepend(data.flash);
+			}
+		},
+		error: function (data) {
+			
+		}
+	})
 }
 
 // ===================================================
