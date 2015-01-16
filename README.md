@@ -30,7 +30,7 @@ echo $this->element('AddressModule.simple_address_review', array('alias' => 'Bil
 
 **Dynamic Review Elements** combine the previous two element types. Assuming javascript is enabled, the view will display the formatted text of the address with an edit button. Clicking the button will hide this entire section and display and instead display the fieldset with populated inputs followed by a **Submit** and **Cancel** button. **Cancel** will revert the display. **Submit** will call the AddressModule to save the data and will display a flash message reporting the result and replacing the section with new data on success.
 
-Same variable requirements as **Dynamic Review Elements**
+Same variable requirements as ***Review Elements***
 - Send $alias to name the **Model** for this address
 - Pass address data in **$address** with the fields as first level indexes
 
