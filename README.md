@@ -1,6 +1,17 @@
 # AddressModule
 
-sql
+## Elements ##
+### Fieldset Elements ###
+Presents a ```<fieldset>``` that contains the inputs necessary to create or edit one address record. Multiple addresses can be on the page at the same time by sending them with different **$alias** values.
+- Send $alias to the views that include this element to set the ##Model## in the inputs
+### Review Elements ###
+- Send $alias to name the ##Model## for this address
+- Pass address data in $address with the fields as first level indexes
+### Dynamic Review Elements ###
+- Send $alias to name the **Model** for this address
+- Pass address data in $address with the fields as first level indexes
+
+mysql
 ``` sql
 CREATE TABLE `addresses` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
