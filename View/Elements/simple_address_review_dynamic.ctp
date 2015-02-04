@@ -8,8 +8,8 @@
 	<div class="fieldset">
 	<?php
 		echo "\t\t\n" . $this->element('AddressModule.simple_address_fieldset', array('alias' => $alias, 'address' => $address)) . "\n";
-		echo "\t\n" . $this->Form->button('Submit', array('type' => 'button', 'class' => 'submit')) . "\n";
-		echo "\t\n" . $this->Form->button('Cancel', array('type' => 'button', 'class' => 'cancel')) . "\n";
+		echo "\t\n" . $this->Form->button('Submit', array('type' => 'button', 'class' => 'submit btn blue')) . "\n";
+		echo "\t\n" . $this->Form->button('Cancel', array('type' => 'button', 'class' => 'cancel btn ltGrey')) . "\n";
 	?>
 	</div>
 </section>
