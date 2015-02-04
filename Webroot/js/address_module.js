@@ -30,8 +30,9 @@ function dynamicReviewEditClick(e) {
 }
 
 function dynamicReviewCancelClick(e) {
-	var parent = $(e.currentTarget).parent().addClass('hide');
-	parent.siblings('div.review').removeClass('hide')
+	var parent = $(e.currentTarget).parents('section[id*="dynamic_review_"]')
+	parent.find('div.fieldset').addClass('hide');
+	parent.find('div.review').removeClass('hide')
 }
 
 function dynamicReviewSubmitClick(e) {
